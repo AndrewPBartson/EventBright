@@ -99,7 +99,7 @@
   - Assign foreign keys - .HasForeignKey(c => c.CatalogTypeId);
   - It's complicated, see CatalogContext.cs and virtual properties in CatalogItem.cs
 
-### 7. Injecting dependencies in Startup.cs
+### 7. Inject dependencies in Startup.cs
 
 - constructor injects configuration file -
 - public Startup(IConfiguration configuration)
