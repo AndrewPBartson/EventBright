@@ -1,6 +1,6 @@
 # Create MicroService Project from scratch
 
-1. Begin project
+### 1. Begin project
 
 - Create a new project --> Blank Solution --> Next
 - Provide name for project --> JewelsOnContainers --> Create
@@ -12,7 +12,7 @@
 - Right-click on src folder -->
   - Add --> New Solution Folder --> Assign name "web"
 
-2. Create first microservice
+### 2. Create first microservice
 
 - Right-click on services folder --> Add --> New Project -->
 - Select template -> ASP.NET Core Web API
@@ -26,12 +26,12 @@
 - Select Linux from DropDown
 - --> Create
 
-3. Delete demo code
+### 3. Delete demo code
 
 - Delete WeatherForecastController.cs
 - Delete WeatherForecast.cs
 
-4. Create Domain (also known as Model)
+### 4. Create Domain (also known as Model)
 
 - Right-click ProductCatalogAPI -> Add -> New Folder --> Domain
 - Right-click Domain -> Add -> Class -->
@@ -64,7 +64,7 @@
   - int Id
   - string Brand
 
-5. Add EntityFrameworkCore
+### 5. Add EntityFrameworkCore
 
 - Right-click on src/services/ProductCatalogAPI --> Manage NuGet Packages
 - New window --> Click Browse tab
@@ -77,7 +77,7 @@
 
 - Set version to match .NET version for this project. Versions must match.
 
-6. Create Data - CatalogContext.cs
+### 6. Create Data - CatalogContext.cs
 
 - Right-click src/services/ProductCatalogAPI
   - Add --> New Folder --> Data
@@ -99,7 +99,7 @@
   - Assign foreign keys - .HasForeignKey(c => c.CatalogTypeId);
   - It's complicated, see CatalogContext.cs and virtual properties in CatalogItem.cs
 
-7. Injecting dependencies in Startup.cs
+### 7. Injecting dependencies in Startup.cs
 
 - constructor injects configuration file -
 - public Startup(IConfiguration configuration)
@@ -110,14 +110,14 @@
 - Add DbContext (soon we inject connection string here)
 - services.AddDbContext\<CatalogContext\>(options => options.UseSqlServer(/\* \*/));
 
-8. Obtain connection string from Db
+### 8. Obtain connection string from Db
 
 - Main menu --> View --> SqlServerObjectExplorer --> Opens in sidebar
 - Right-click (localdb)MSSQLLocalDb(SQL Server 13.04001 etc)
 - Right-click on SqlServer --> Properties --> Properties Panel -->
 - General --> Connection string --> Copy to clipboard
 
-9. Store connection string in appsettings.json
+### 9. Store connection string in appsettings.json
 
 - Add a key value pair at the top of appsettings.json
 - Paste the connection string from your clipboard as the value -
@@ -127,11 +127,11 @@
 - Value of "Initial Catalog" should be name you want to assign to this Db
 - The rest of the auto-generated connection string can be deleted.
 
-10. Provide reference to connection string in Startup.ConfigureServices() UseSqlServer()
+### 10. Provide reference to connection string in Startup.ConfigureServices() UseSqlServer()
 
 - services.AddDbContext/<CatalogContext\>(options => options.UseSqlServer(Configuration["ConnectionString"]));
 
-11. Build Db migrations
+### 11. Build Db migrations
 
 - Main menu --> View --> Other Windows --> Package Manager Console -->
 - Opens Powershell window inside VS
@@ -140,7 +140,7 @@
   - At the prompt, enter this command -
   - PM> Add-Migration anyname
 
-12. Create CatalogSeed.cs to run Db migrations and to seed data into Db
+### 12. Create CatalogSeed.cs to run Db migrations and to seed data into Db
 
 - Right-click Data folder --> Add --> Class -->
 - Assign name CatalogSeed.cs
@@ -152,7 +152,7 @@
 - For seeding data, follow the example code in CatalogSeed.cs Seed()
 - Warning - Data is not saved until --> context.SaveChanges();
 
-13. Modify Program.cs for correct timing of Build() and Run()
+### 13. Modify Program.cs for correct timing of Build() and Run()
 
 - Migrations and seeding can't happen until Db is fully built which takes some time
 - So we need to detect when Db is built and only then run migrations and seeding
@@ -166,14 +166,14 @@
   - When Seed() is finished, execute Run()
   - See Kal's code in Program.cs
 
-14. Run the project!
+### 14. Run the project!
 
 - Main menu --> Run with IIS Express (not Docker yet)
 - --> Click green Run button
 - Browser tries to open up localhost://44399/WeatherForecast
 - Page not available but web host is running!
 
-15. Check to see if Db tables were created
+### 15. Check to see if Db tables were created
 
 - Main menu --> View --> SqlServerObjectExplorer -->
 - Click list arrow caret next to (localdb)\MSSQLLocalDB...
