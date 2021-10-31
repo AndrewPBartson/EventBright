@@ -34,11 +34,10 @@
 ### 4. Create Domain (also known as Model)
 
 - Right-click ProductCatalogAPI -> Add -> New Folder --> Domain
+
 - Right-click Domain -> Add -> Class -->
-
   - Assign name CatalogItem.cs --> Add
-
-- Add public properties // Kal's example
+- Add public properties
 
   - int Id
   - string Name
@@ -101,14 +100,14 @@
 
 ### 7. Inject dependencies in Startup.cs
 
-- constructor injects configuration file -
-- public Startup(IConfiguration configuration)
-  // Configure services in Startup.cs
-- Services are added in ConfigureServices method
-- public void ConfigureServices(IServiceCollection services)
-- services.AddControllers();
-- Add DbContext (soon we inject connection string here)
-- services.AddDbContext\<CatalogContext\>(options => options.UseSqlServer(/\* \*/));
+- Constructor injects configuration file -
+  - public Startup(IConfiguration configuration)
+- Configure services in Startup.cs
+  - Services are added in ConfigureServices method
+  - public void ConfigureServices(IServiceCollection services)
+  - services.AddControllers();
+  - Add DbContext (coming up, we inject connection string here)
+  - services.AddDbContext\<CatalogContext\>(options => options.UseSqlServer(/\* \*/));
 
 ### 8. Obtain connection string from Db
 
@@ -146,9 +145,9 @@
 - Assign name CatalogSeed.cs
 - Make it a static class -
   - public static class CatalogSeed
-    Add a static method - Seed()
-- public static void Seed(CatalogContext context)
-- Add code to execute migrations -- context.Database.Migrate();
+- Add a static method - Seed()
+  - public static void Seed(CatalogContext context)
+  - Add code to execute migrations -- context.Database.Migrate();
 - For seeding data, follow the example code in CatalogSeed.cs Seed()
 - Warning - Data is not saved until --> context.SaveChanges();
 
@@ -168,7 +167,7 @@
 
 ### 14. Run the project!
 
-- Main menu --> Run with IIS Express (not Docker yet)
+- Main menu --> Run with IIS Express (not using Docker yet)
 - --> Click green Run button
 - Browser tries to open up localhost://44399/WeatherForecast
 - Page not available but web host is running!
@@ -183,6 +182,6 @@
   - dbo.Catalog
   - dbo.Brands
   - dbo.Types
-- Right click on dbo. file --> View Data
+- Right-click one of dbo. files --> View Data
   - Takes awhile to load
   - Then you can see table structure and data
